@@ -1,3 +1,9 @@
+// Copyright (c) 2023 Danielle Arlington.
+
+// This program is free software: you can redistribute it and/or modify  
+// it under the terms of the LGPL Public License version 3.
+// https://opensource.org/license/lgpl-3-0/
+
 (function () {
     var defaultUserData = {
         floors: [
