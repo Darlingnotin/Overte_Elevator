@@ -52,13 +52,12 @@
         }
         messageData = JSON.parse(message);
         if (messageData.action == "moveElevatorToLocation") {
-            console.log("currentFloor: " + currentFloor);
-            // if (messageData.floors = currentFloor) {
-            //     sendElevatorMessage(currentFloor);
-            // } else {
-                currentFloor = messageData.floors;
+            console.log("currentFloor: " + currentFloor + " messageData.floors: " + messageData.floors);
+            if (messageData.floors == currentFloor) {
+                sendElevatorMessage(currentFloor);
+            } else {
                 moveElevatorToLocation(messageData.floors);
-            // }
+            }
         }
     }
 
@@ -78,6 +77,7 @@
         if (elevatorInMotion) {
             return;
         }
+        currentFloor = messageData.floors;
         elevatorInMotion = true;
         Script.setTimeout(function () {
             Entities.editEntity(elevatorChannel, {
