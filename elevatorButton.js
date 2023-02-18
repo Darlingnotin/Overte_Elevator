@@ -20,6 +20,7 @@
             var userData = JSON.parse(entityProperties.userData);
             if (userData.elevatorChannel == undefined) {
                 userData.elevatorChannel = defaultUserData.elevatorChannel;
+                userData.floors = 0;
                 floors = defaultUserData.floors;
                 addDefaultUserData(uuid, userData);
                 elevatorChannel = defaultUserData.elevatorChannel;
