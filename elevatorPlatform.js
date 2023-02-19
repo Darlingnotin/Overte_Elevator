@@ -24,6 +24,7 @@
     var elevatorChannel;
     var elevatorInMotion = false;
     var currentFloor = 1;
+    var elevatorButtonPaused = false;
     this.preload = function (uuid) {
         elevatorChannel = uuid;
         var elevatorEntityProperties = Entities.getEntityProperties(elevatorChannel);
@@ -52,9 +53,13 @@
         }
         messageData = JSON.parse(message);
         if (messageData.action == "moveElevatorToLocation") {
-            if (messageData.floors == currentFloor) {
+            if (elevatorInMotion || elevatorButtonPaused) {
+                return;
+            } else if (messageData.floors == currentFloor) {
+                pauseUpdates();
                 sendElevatorMessage(currentFloor);
             } else {
+                pauseUpdates();
                 moveElevatorToLocation(messageData.floors);
             }
         }
@@ -73,9 +78,6 @@
     }
 
     var movePlatform = function (isGoingUp, pointA, pointB, floor) {
-        if (elevatorInMotion) {
-            return;
-        }
         currentFloor = messageData.floors;
         elevatorInMotion = true;
         Script.setTimeout(function () {
@@ -109,6 +111,13 @@
             action: "elevatorArrivedAtDestination",
             floor: floor
         }));
+    }
+
+    function pauseUpdates() {
+        elevatorButtonPaused = true;
+        Script.setTimeout(function () {
+            elevatorButtonPaused = false;
+        }, 4000);
     }
 
     this.unload = function () {
