@@ -1,8 +1,7 @@
 // Copyright (c) 2023 Danielle Arlington.
 
-// This program is free software: you can redistribute it and/or modify  
-// it under the terms of the LGPL Public License version 3.
-// https://opensource.org/license/lgpl-3-0/
+// It's under the terms of the LICENSE-2.0.
+// http://www.apache.org/licenses/LICENSE-2.0
 
 (function () {
     defaultUserData = {
