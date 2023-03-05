@@ -19,7 +19,7 @@
         ]
     };
     var pauseBeforeMovingPlatform = 2000;
-    var MOVE_TIME = 5;
+    var MOVE_TIME = 2;
     var elevatorChannel;
     var elevatorInMotion = false;
     var currentFloor = 1;
@@ -85,7 +85,7 @@
             })
             var from = isGoingUp ? pointA : pointB;
             var to = isGoingUp ? pointB : pointA;
-            var moveTime = MOVE_TIME;
+            var moveTime = (pointA.y + pointB.y) * MOVE_TIME;
             var moveDirection = Vec3.subtract(to, from);
             var moveVelocity = Vec3.multiply(moveDirection, 1 / moveTime);
             Entities.editEntity(elevatorChannel, {
