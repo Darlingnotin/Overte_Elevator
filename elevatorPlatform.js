@@ -85,7 +85,7 @@
             })
             var from = isGoingUp ? pointA : pointB;
             var to = isGoingUp ? pointB : pointA;
-            var moveTime = (pointA.y + pointB.y) * MOVE_TIME;
+            var moveTime = Math.floor((pointB.y - pointA.y) * MOVE_TIME);
             var moveDirection = Vec3.subtract(to, from);
             var moveVelocity = Vec3.multiply(moveDirection, 1 / moveTime);
             Entities.editEntity(elevatorChannel, {
