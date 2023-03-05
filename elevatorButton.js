@@ -28,7 +28,6 @@
                 floors = userData.floors;
             }
         }
-        console.log(elevatorChannel);
         Messages.subscribe(elevatorChannel);
     }
     this.clickDownOnEntity = function () {
@@ -41,7 +40,6 @@
         entityTiggered();
     };
     function entityTiggered() {
-        console.log("iuhgiuh");
         Messages.sendMessage(elevatorChannel, JSON.stringify({
             action: "moveElevatorToLocation",
             floors: floors
